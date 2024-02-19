@@ -33,7 +33,7 @@ RUN echo "ngrok config add-authtoken ${Ngrok} &&" >>/start.sh
 RUN echo "ngrok tcp 22 --region ${re} &>/dev/null &" >>/start.sh
 RUN mkdir /run/sshd
 RUN echo '/usr/sbin/sshd -D' >>/start.sh
-RUN echo "apache2-foreground" >>/start.sh
+RUN echo "docker-entrypoint.sh apache2-foreground" >>/start.sh
 RUN echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config 
 RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 RUN echo root:${Password}|chpasswd
